@@ -20,7 +20,7 @@ void drive_robot(float lin_x, float ang_z) {
     srv.request.angular_z = ang_z;
 
     if (!client.call(srv)) {
-        ROS_ERROR("Failed to call service safe_move");
+        ROS_ERROR("Failed to call service command_robot");
     }
 }
 
@@ -38,7 +38,10 @@ void process_image_callback(const sensor_msgs::Image img) {
     IMG_ZONE zone = IMG_ZONE::none;
     // Loop through each pixel in the image looking for white ball.
     for (int i = 0; i < img.height * img.step; i++) {
-        if (img.data[i] == white_pixel) {
+        if (img.data[i] == white_pixel &&
+            img.data[i + 1] == white_pixel &&
+            img.data[i + 2] == white_pixel) {
+
             // Found the ball, now locate which zone of the image it's in.
             unsigned int loc = i % img.step;
 
