@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/mike/udacity_robotics_sw_engineer/Project4/catkin_ws/devel/setup.sh
