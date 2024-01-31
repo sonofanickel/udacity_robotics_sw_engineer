@@ -26,7 +26,12 @@
     </plugin>
   </gazebo>
 
-<!-- RGBD Camera -->
+  <gazebo reference="caster_wheel">
+    <mu1 value="0.001"/>
+    <mu2 value="0.001"/>
+  </gazebo>
+
+  <!-- RGBD Camera -->
   <gazebo reference="camera">
     <sensor type="depth" name="camera1">
         <always_on>1</always_on>
