@@ -32,5 +32,5 @@
               -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
 
   <!--launch rviz-->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d ~/udacity_robotics_sw_engineer/Project4/catkin_ws/src/project4.rviz" respawn="false"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d /home/robond/udacity_robotics_sw_engineer/Project4/catkin_ws/src/project4.rviz" respawn="false"/>
 </launch>
