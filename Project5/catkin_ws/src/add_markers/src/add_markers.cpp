@@ -7,7 +7,7 @@
 visualization_msgs::Marker marker;
 ros::Publisher marker_pub;
 
-void turtlebotArrivedCallback(const std_msgs::String::ConstPtr& msg)
+void myrobotArrivedCallback(const std_msgs::String::ConstPtr& msg)
 {
    // Decode message. Format is "<location name>,X,Y", e.g. "pickup,1,1", "dropoff,-1,-1"
    std::stringstream ss(msg->data);
@@ -22,7 +22,7 @@ void turtlebotArrivedCallback(const std_msgs::String::ConstPtr& msg)
 
    if (tokens.size() != 3)
    {
-      ROS_WARN("Received malformed turtlebot_arrived message.");
+      ROS_WARN("Received malformed myrobot_arrived message.");
    }
    else if (tokens[0] == "pickup")
    {
@@ -40,7 +40,7 @@ void turtlebotArrivedCallback(const std_msgs::String::ConstPtr& msg)
    }
    else
    {
-      ROS_WARN("Received unknown data in turtlebot_arrived message.");
+      ROS_WARN("Received unknown data in myrobot_arrived message.");
    }
 }
 
@@ -50,7 +50,7 @@ int main( int argc, char** argv )
   ros::NodeHandle n;
   ros::Rate r(1);
   marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
-  ros::Subscriber sub = n.subscribe("turtlebot_arrived", 10, turtlebotArrivedCallback);
+  ros::Subscriber sub = n.subscribe("myrobot_arrived", 10, myrobotArrivedCallback);
 
   // Set our initial shape type to be a cube
   uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -71,13 +71,13 @@ int main( int argc, char** argv )
   marker.action = visualization_msgs::Marker::ADD;
 
   // Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
-  marker.pose.position.x = 1.5;
-  marker.pose.position.y = 1.0;
+  marker.pose.position.x = 2.38;
+  marker.pose.position.y = -6.9;
   marker.pose.position.z = 0;
   marker.pose.orientation.x = 0.0;
   marker.pose.orientation.y = 0.0;
   marker.pose.orientation.z = 0.0;
-  marker.pose.orientation.w = 1.0;
+  marker.pose.orientation.w = -1.57;
 
   // Set the scale of the marker -- 1x1x1 here means 1m on a side
   marker.scale.x = 0.2;

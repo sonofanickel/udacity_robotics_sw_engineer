@@ -11,11 +11,11 @@ int main(int argc, char** argv){
   ros::init(argc, argv, "pick_objects");
   ros::NodeHandle n;
 
-  ros::Publisher arrived_pub = n.advertise<std_msgs::String>("turtlebot_arrived", 10);
+  ros::Publisher arrived_pub = n.advertise<std_msgs::String>("myrobot_arrived", 10);
   std_msgs::String arrived_at_pickup_msg;
-  arrived_at_pickup_msg.data = "pickup,1.5,1.0";
+  arrived_at_pickup_msg.data = "pickup,2.38,-6.9";
   std_msgs::String arrived_at_dropoff_msg;
-  arrived_at_dropoff_msg.data = "dropoff,-1,0";
+  arrived_at_dropoff_msg.data = "dropoff,2.68,9.03";
 
   //tell the action client that we want to spin a thread by default
   MoveBaseClient ac("move_base", true);
@@ -32,9 +32,9 @@ int main(int argc, char** argv){
   goal.target_pose.header.stamp = ros::Time::now();
   
   // Define a position and orientation for the robot to reach
-  goal.target_pose.pose.position.x = 1.5;
-  goal.target_pose.pose.position.y = 1.0;
-  goal.target_pose.pose.orientation.w = 1.0;
+  goal.target_pose.pose.position.x = 2.38;
+  goal.target_pose.pose.position.y = -6.9;
+  goal.target_pose.pose.orientation.w = -1.57;
 
    // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending pickup zone");
@@ -56,9 +56,9 @@ int main(int argc, char** argv){
     goal2.target_pose.header.frame_id = "map";
     goal2.target_pose.header.stamp = ros::Time::now();
   
-    goal2.target_pose.pose.position.x = -1.0;
-    goal2.target_pose.pose.position.y = 0.0;
-    goal2.target_pose.pose.orientation.w = 1.0;
+    goal2.target_pose.pose.position.x = 2.68;
+    goal2.target_pose.pose.position.y = 9.03;
+    goal2.target_pose.pose.orientation.w = -1.57;
 
     // Send the goal position and orientation for the robot to reach
     ROS_INFO("Sending drop off zone");
